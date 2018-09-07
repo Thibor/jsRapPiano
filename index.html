@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Demo</title>
+<link rel="stylesheet" href="jsRapPiano.css" />
+<link rel="stylesheet" href="index.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="jsRapPiano.js"></script>
+<script>
+function ClickWT(t){
+let wt = $(t).attr('value');
+oscillator.type = wt;
+$('.wtActive').removeClass('wtActive');
+$(t).addClass('wtActive');
+}
+
+function SetWaveLength(wl){
+ $('#demo1')[0].opt.releaseTime = wl;
+}
+
+$(document).ready(function(){
+$('#demo1').jsRapPiano({
+	octave:2,
+	octaves:3
+});
+});
+</script>
+</head>
+<body>
+<div id="divMain">
+<div id="divGitHub">
+<div id="GitHub" onclick="location.href='https://github.com/Thibor/jsRapPiano'"></div>
+</div>
+<div id="demo1" ></div>
+<div>
+<div class="waveType" value="sine" id="wtSin" onclick="ClickWT(this)"></div>
+<div class="waveType" value="triangle" id="wtTri" onclick="ClickWT(this)"></div>
+<div class="waveType wtActive" value="square" id="wtSqr" onclick="ClickWT(this)"></div>
+<div class="waveType" value="sawtooth" id="wtSaw" onclick="ClickWT(this)"></div>
+<div class="divWaveLength">
+<div class="capWaveLength">Wave Length<div>
+<input id="waveLength" type="range" min="0.1" max="2" value="0.5" step="0.1" onchange="SetWaveLength(this.value)" />
+</div>
+</div>
+</div>
+</body>
+</html>
