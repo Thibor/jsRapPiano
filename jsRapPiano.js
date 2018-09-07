@@ -55,24 +55,10 @@ return this.each(function(){
 	}
 	
 	this.PlaySound = function(frequency){
-		oscillator.frequency.value = frequency;
 		let now = audioCtx.currentTime;
-		//gainNode.gain.setTargetAtTime(0,now,0.05);
+		oscillator.frequency.setTargetAtTime(frequencyf,now,this.opt.attackTime);
 		gainNode.gain.setTargetAtTime(1,now,this.opt.attackTime);
 		gainNode.gain.setTargetAtTime(0,now + this.opt.attackTime,this.opt.releaseTime);
-		
-		/*let now = audioCtx.currentTime;
-		gainNode.gain.setValueAtTime(0,now + 0.05);
-		//oscillator.frequency.value = frequency;
-		gainNode.gain.setValueAtTime(1,now + 0.1);
-		gainNode.gain.setTargetAtTime(0, now + 0.1,this.opt.releaseTime);*/
-		
-		//oscillator.frequency.value = frequency;
-		/*let now = audioCtx.currentTime;
-		gainNode.gain.cancelScheduledValues(now);
-		gainNode.gain.setValueAtTime(0, now);
-		gainNode.gain.linearRampToValueAtTime(1, now + 0.1);
-		gainNode.gain.linearRampToValueAtTime(0, now + 0.1 + this.opt.releaseTime);*/
 	}
 	
 	this.Render();
