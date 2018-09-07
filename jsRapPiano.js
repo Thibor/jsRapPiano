@@ -21,14 +21,12 @@ return this.each(function(){
 	this.opt = $.extend({
 		octave:3,
 		octaves:2,
-		attackTime:0.04,
-		releaseTime:0.5,
+		waveLength:0.5,
 		waveType:'square',
 		onClick:null
 	},options);
 	let base = this;
 	oscillator.type = this.opt.waveType;
-	oscillator.frequency.value = 50;
 	
 	this.Render = function(){
 		$(this).empty();
@@ -55,10 +53,9 @@ return this.each(function(){
 	}
 	
 	this.PlaySound = function(frequency){
-		let now = audioCtx.currentTime;
-		oscillator.frequency.setTargetAtTime(frequencyf,now,this.opt.attackTime);
-		gainNode.gain.setTargetAtTime(1,now,this.opt.attackTime);
-		gainNode.gain.setTargetAtTime(0,now + this.opt.attackTime,this.opt.releaseTime);
+		oscillator.frequency.value = frequency;
+		gainNode.gain.setValueAtTime(1,0);
+		gainNode.gain.setTargetAtTime(0,audioCtx.currentTime,this.opt.waveLength);
 	}
 	
 	this.Render();
