@@ -42,32 +42,30 @@ background-color:#f00;
 #demo1{
 margin:8px auto;
 }
-.waveType{
+@font-face{font-family:'ThiborFont';src:url(ThiborFont.ttf);}
+.WT{
 margin:8px;
 float:left;
-width:80px;
-height:80px;
 border:2px solid #000;
-border-radius:50%;
+border-radius:8%;
 background-color:black;
-background-position:center; 
-background-repeat:no-repeat;
-background-size:50% 50%;
+font:normal 32px ThiborFont;
+padding:24px;
+text-align: center;
+box-sizing:border-box;
+color:#080;
+-webkit-user-select:none;
+-moz-user-select:none;
+}
+.WT span{
+cursor:pointer;
+}
+.WT span:hover{
+color:#22ff55;	
 }
 .wtActive{
-border-color:yellow;
-}
-#wtSin{
-background-image:url(sin.png);
-}
-#wtTri{
-background-image:url(tri.png);
-}
-#wtSqr{
-background-image:url(sqr.png);
-}
-#wtSaw{
-background-image:url(saw.png);
+color:#22ff55;
+text-shadow: 0 0 10px #22ff55;
 }
 .divWaveLength{
 float:left;
