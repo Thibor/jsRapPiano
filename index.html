@@ -9,7 +9,13 @@
 <script src="jsRapPiano.js"></script>
 <script>
 function SetWT(wt){
-oscillator.type = wt;
+if(wt == 'custom'){
+	let real = new Float32Array([0,-1,0,1]);
+	let imag = new Float32Array([0,0.2,0,-0.2]);
+	let wave = audioCtx.createPeriodicWave(real, imag, {disableNormalization: true});
+	oscillator.setPeriodicWave(wave);
+}else
+	oscillator.type = wt;
 $('.wtActive').removeClass('wtActive');
 $('#WT' + wt).addClass('wtActive');
 }
@@ -37,6 +43,7 @@ $('#demo1').jsRapPiano({
 <span id="WTtriangle" onclick="SetWT('triangle')">z</span>
 <span id="WTsquare" onclick="SetWT('square')" class="wtActive">c</span>
 <span id="WTsawtooth" onclick="SetWT('sawtooth')">n</span>
+<span id="WTcustom" onclick="SetWT('custom')">u</span>
 </div>
 <div>
 <div class="divWaveLength">

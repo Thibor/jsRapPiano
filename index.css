@@ -47,7 +47,7 @@ margin:8px auto;
 margin:8px;
 float:left;
 border:2px solid #000;
-border-radius:8%;
+border-radius:8px;
 background-color:black;
 font:normal 32px ThiborFont;
 padding:24px;
@@ -64,20 +64,20 @@ cursor:pointer;
 color:#22ff55;	
 }
 .wtActive{
-color:#22ff55;
-text-shadow: 0 0 10px #22ff55;
+color:#0f0;
+text-shadow:0 0 10px #4f4,0 0 4px #fff;
 }
 .divWaveLength{
 float:left;
 }
 .divWaveLength input{
 margin:8px;
-border-style: none;
-cursor: grab;  
+border-style:none;
+cursor:pointer;  
 }
 .capWaveLength{
 color:white;
-font-size: large;
+font-size:large;
 padding:8px;
-text-align: center;
+text-align:center;
 }
