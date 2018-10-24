@@ -42,42 +42,4 @@ background-color:#f00;
 #demo1{
 margin:8px auto;
 }
-@font-face{font-family:'ThiborFont';src:url(ThiborFont.ttf);}
-.WT{
-margin:8px;
-float:left;
-border:2px solid #000;
-border-radius:8px;
-background-color:black;
-font:normal 32px ThiborFont;
-padding:24px;
-text-align: center;
-box-sizing:border-box;
-color:#080;
--webkit-user-select:none;
--moz-user-select:none;
-}
-.WT span{
-cursor:pointer;
-}
-.WT span:hover{
-color:#22ff55;	
-}
-.wtActive{
-color:#0f0;
-text-shadow:0 0 10px #4f4,0 0 4px #fff;
-}
-.divWaveLength{
-float:left;
-}
-.divWaveLength input{
-margin:8px;
-border-style:none;
-cursor:pointer;  
-}
-.capWaveLength{
-color:white;
-font-size:large;
-padding:8px;
-text-align:center;
-}
+

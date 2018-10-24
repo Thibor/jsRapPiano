@@ -8,21 +8,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="jsRapPiano.js"></script>
 <script>
-function SetWT(wt){
-if(wt == 'custom'){
-	let real = new Float32Array([0,-1,0,1]);
-	let imag = new Float32Array([0,0.2,0,-0.2]);
-	let wave = audioCtx.createPeriodicWave(real, imag, {disableNormalization: true});
-	oscillator.setPeriodicWave(wave);
-}else
-	oscillator.type = wt;
-$('.wtActive').removeClass('wtActive');
-$('#WT' + wt).addClass('wtActive');
-}
-
-function SetReleaseTime(rt){
-$('#demo1')[0].opt.releaseTime = rt;
-}
 
 $(document).ready(function(){
 $('#demo1').jsRapPiano({
@@ -30,6 +15,7 @@ $('#demo1').jsRapPiano({
 	octaves:3
 });
 });
+
 </script>
 </head>
 <body>
@@ -38,19 +24,6 @@ $('#demo1').jsRapPiano({
 <div id="GitHub" onclick="location.href='https://github.com/Thibor/jsRapPiano'"></div>
 </div>
 <div id="demo1" ></div>
-<div class="WT">
-<span id="WTsine" onclick="SetWT('sine')">s</span>
-<span id="WTtriangle" onclick="SetWT('triangle')">z</span>
-<span id="WTsquare" onclick="SetWT('square')" class="wtActive">c</span>
-<span id="WTsawtooth" onclick="SetWT('sawtooth')">n</span>
-<span id="WTcustom" onclick="SetWT('custom')">u</span>
-</div>
-<div>
-<div class="divWaveLength">
-<div class="capWaveLength">Release Time</div>
-<input id="waveLength" type="range" min="0.1" max="2" value="0.5" step="0.1" onchange="SetReleaseTime(this.value)" />
-</div>
-</div>
 </div>
 </body>
 </html>

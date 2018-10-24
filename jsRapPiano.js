@@ -1,11 +1,14 @@
 AudioContext = window.AudioContext || window.webkitAudioContext,
 audioCtx = new AudioContext(),
-oscillator = audioCtx.createOscillator(),
+oscillator = audioCtx.createOscillator();
+gainMain = audioCtx.createGain();
+gainMain.gain.value = 1;
+gainMain.connect(audioCtx.destination);
 gainNode = audioCtx.createGain();
-oscillator.start(0);
 gainNode.gain.value = 0;
+gainNode.connect(gainMain);
+oscillator.start(0);
 oscillator.connect(gainNode);
-gainNode.connect(audioCtx.destination);
 
 $(window).resize(function(){
 $('.rapPiano').each(function(){
