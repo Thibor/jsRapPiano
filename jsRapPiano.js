@@ -1,15 +1,3 @@
-AudioContext = window.AudioContext || window.webkitAudioContext,
-audioCtx = new AudioContext(),
-oscillator = audioCtx.createOscillator();
-gainMain = audioCtx.createGain();
-gainMain.gain.value = 1;
-gainMain.connect(audioCtx.destination);
-gainNode = audioCtx.createGain();
-gainNode.gain.value = 0;
-gainNode.connect(gainMain);
-oscillator.start(0);
-oscillator.connect(gainNode);
-
 $(window).resize(function(){
 $('.rapPiano').each(function(){
 	this.Render();
@@ -20,18 +8,29 @@ $('.rapPiano').each(function(){
 $.fn.jsRapPiano = function(options){
 
 return this.each(function(){
-	
 	this.opt = $.extend({
 		octave:3,
 		octaves:2,
-		attackTime:0.04,
-		releaseTime:0.5,
 		waveType:'square',
+		envelope:{
+			attack:0.05,
+			decay:0.1,
+			sustain:0.1,
+			release:0.5,
+			level:0.5
+		},
 		onClick:null
 	},options);
 	let base = this;
-	oscillator.type = this.opt.waveType;
-	oscillator.frequency.value = 50;
+	let AudioContext = window.AudioContext || window.webkitAudioContext;
+	this.audioContext = new AudioContext();
+	this.oscillator = this.audioContext.createOscillator();
+	this.gainMain = this.audioContext.createGain();
+	this.gainMain.gain.value = 1;
+	this.gainMain.connect(this.audioContext.destination);
+	this.oscillator.start(0);
+	this.oscillator.type = this.opt.waveType;
+	this.oscillator.frequency.value = 50;
 	
 	this.Render = function(){
 		$(this).empty();
@@ -58,10 +57,21 @@ return this.each(function(){
 	}
 	
 	this.PlaySound = function(frequency){
-		let now = audioCtx.currentTime;
-		oscillator.frequency.value = frequency;
-		gainNode.gain.setTargetAtTime(1,now,this.opt.attackTime);
-		gainNode.gain.setTargetAtTime(0,now + this.opt.attackTime,this.opt.releaseTime);
+		let now = this.audioContext.currentTime;
+		let t = now;
+		gainNode = this.audioContext.createGain();
+		gainNode.connect(this.gainMain);
+		this.oscillator.connect(gainNode);
+		gainNode.gain.setValueAtTime(0,t);
+		this.oscillator.frequency.value = frequency;
+		t += this.opt.envelope.attack;
+		gainNode.gain.linearRampToValueAtTime(1,t);
+		t += this.opt.envelope.decay;
+		gainNode.gain.linearRampToValueAtTime(this.opt.envelope.level,t);
+		t += this.opt.envelope.sustain;
+		gainNode.gain.linearRampToValueAtTime(this.opt.envelope.level,t);
+		t += this.opt.envelope.release;
+		gainNode.gain.linearRampToValueAtTime(0,t);
 	}
 	
 	this.Render();
