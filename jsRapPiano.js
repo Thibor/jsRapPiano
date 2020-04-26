@@ -51,7 +51,7 @@ return this.each(function(){
 				let f =440 * Math.pow(2,(i - 69) / 12);
 				base.PlaySound(f);
 				if(base.opt.onClick)
-					base.opt.onClick.call(base);
+					base.opt.onClick.call(base, i);
 			}
 		});	
 	}
