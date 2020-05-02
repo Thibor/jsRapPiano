@@ -57,6 +57,7 @@ return this.each(function(){
 	}
 	
 	this.PlaySound = function(frequency){
+		this.audioContext.resume();
 		let t = this.audioContext.currentTime;
 		gainNode = this.audioContext.createGain();
 		gainNode.connect(this.gainMain);
