@@ -30,7 +30,6 @@ $(window).resize(function () {
 			this.gainMain.connect(this.audioContext.destination);
 			this.oscillator.start(0);
 			this.oscillator.type = this.opt.waveType;
-			this.oscillator.frequency.value = 50;
 
 			this.Render = function () {
 				$(this).empty();
