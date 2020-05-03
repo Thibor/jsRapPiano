@@ -51,7 +51,7 @@ $(window).resize(function () {
 						base.audioContext.resume();
 						base.PlaySound(f);
 						if (base.opt.onClick)
-							base.opt.onClick.call(base, i);
+							base.opt.onClick.call(base, i, f);
 					}
 				});
 			}

@@ -12,7 +12,10 @@
 $(document).ready(function(){
 $('#demo1').jsRapPiano({
 	octave:2,
-	octaves:3
+	octaves:3,
+	onClick:function(index,frequency){
+		$('#frequency').text(Math.round(frequency) + ' Hz');
+	}
 });
 });
 
@@ -24,6 +27,7 @@ $('#demo1').jsRapPiano({
 <div id="GitHub" onclick="location.href='https://github.com/Thibor/jsRapPiano'"></div>
 </div>
 <div id="demo1" ></div>
+<div id="frequency" ></div>
 </div>
 </body>
 </html>
