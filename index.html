@@ -14,7 +14,7 @@ $('#demo1').jsRapPiano({
 	octave:2,
 	octaves:3,
 	onClick:function(index,frequency){
-		$('#frequency').text(Math.round(frequency) + ' Hz');
+		$('#frequency').text(index + '-' + Math.round(frequency) + ' Hz');
 	}
 });
 });
