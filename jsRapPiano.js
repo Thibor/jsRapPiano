@@ -47,17 +47,17 @@ $(window).resize(function () {
 					}
 				$('.major,.minor', this).bind({
 					mousedown: function (e) {
+						this.audioContext.resume();
 						let i = $(this).prop('index');
 						let f = 440 * Math.pow(2, (i - 69) / 12);
 						base.PlaySound(f);
 						if (base.opt.onClick)
-							base.opt.onClick.call(base);
+							base.opt.onClick.call(base, i);
 					}
 				});
 			}
 
 			this.PlaySound = function (frequency) {
-				this.audioContext.resume();
 				let t = this.audioContext.currentTime;
 				gainNode = this.audioContext.createGain();
 				gainNode.connect(this.gainMain);
