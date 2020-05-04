@@ -11,6 +11,7 @@ $(window).resize(function () {
 			this.opt = $.extend({
 				octave: 3,
 				octaves: 2,
+				tuning: 440,
 				waveType: 'square',
 				envelope: {
 					attack: 0.05,
@@ -47,7 +48,7 @@ $(window).resize(function () {
 				$('.major,.minor', this).bind({
 					mousedown: function (e) {
 						let i = $(this).prop('index');
-						let f = 440 * Math.pow(2, (i - 69) / 12);
+						let f = base.opt.tuning * Math.pow(2, (i - 69) / 12);
 						base.audioContext.resume();
 						base.PlaySound(f);
 						if (base.opt.onClick)
